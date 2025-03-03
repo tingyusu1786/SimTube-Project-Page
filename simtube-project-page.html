@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      SimTube: Generating Simulated Video Comments through Multimodal AI and
+      User Personas
+    </title>
+    <meta
+      name="description"
+      content="SimTube: Generating Simulated Video Comments through Multimodal AI and User Personas"
+    />
+    <meta
+      name="keywords"
+      `
+      content="SimTube, video comments, multimodal AI, user personas"
+    />
+    <meta
+      name="author"
+      content="Yu-Kai Hung, Yun-Chien Huang, Ting-Yu Su, Yen-Ting Lin, Lung-Pan Cheng, Bryan Wang, Shao-Hua Sun"
+    />
+    <link rel="icon" type="image/x-icon" href="images/favicon.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <div class="flex flex-col items-center justify-start gap-y-10x">
+      <div class="w-full odd:bg-white even:bg-zinc-100">
+        <section
+          class="flex flex-col items-center justify-start gap-y-3 max-w-screen-lg mx-auto px-6 py-10 lg:p-12"
+        >
+          <h1 class="text-center text-3xl font-bold text-red-700">
+            SimTube: Generating Simulated Video Comments through Multimodal AI
+            and User Personas
+          </h1>
+          <p class="text-center text-base">
+            <span class="text-[#3983f2]">Yu-Kai Hung</span><sup>1</sup>,
+            <span class="text-[#3983f2]">Yun-Chien Huang</span><sup>1</sup>,
+            <span class="text-[#3983f2]">Ting-Yu Su</span><sup>1</sup>,
+            <span class="text-[#3983f2]">Yen-Ting Lin</span><sup>1</sup>,
+            <span class="text-[#3983f2]">Lung-Pan Cheng</span><sup>2</sup>,
+            <span class="text-[#3983f2]">Bryan Wang</span><sup>2*</sup>,
+            <span class="text-[#3983f2]">Shao-Hua Sun</span><sup>1*</sup>
+          </p>
+          <p class="text-center text-base text-zinc-700">
+            <sup class="text-black">1</sup>National Taiwan University,
+            <sup class="text-black">2</sup>Adobe Research,
+            <sup class="text-black">*</sup>Equal advisory contribution
+          </p>
+          <div class="flex flex-row justify-center items-center gap-x-2">
+            <a
+              href="https://arxiv.org/abs/2411.09577"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="rounded-full bg-zinc-200 px-4 py-1 hover:bg-zinc-300 text-sm"
+              >ArXiv</a
+            >
+            <a
+              href="https://youtu.be/jx8cz5sMkdo"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="rounded-full bg-zinc-200 px-4 py-1 hover:bg-zinc-300 text-sm"
+              >YouTube</a
+            >
+          </div>
+          <p class="text-justify">
+            The SimTube is a feedback tool that utilizes VLM to digest the video
+            and LLM to generate diverse and helpful comments for video creators
+            before video publication. SimTube provides a solid foundation of
+            social computing on the video sharing platforms.
+          </p>
+          <video controls class="md:w-5/6 w-full bg-zinc-200">
+            <source src="videos/video_figure.mp4" type="video/mp4" />
+            <p className="text-center text-zinc-600">
+              Your browser does not support the video format.
+            </p>
+          </video>
+        </section>
+      </div>
+      <div class="w-full odd:bg-white even:bg-zinc-100">
+        <section
+          class="flex flex-col items-center justify-start gap-y-3 max-w-screen-lg mx-auto px-6 py-10 lg:p-12"
+        >
+          <h2 class="text-center text-2xl font-semibold text-red-700">
+            Abstract
+          </h2>
+          <p class="text-justify">
+            Audience feedback is crucial for refining video content, yet it
+            typically comes after publication, limiting creators' ability to
+            make timely adjustments. To bridge this gap, we introduce SimTube, a
+            generative AI system designed to simulate audience feedback in the
+            form of video comments before a video's release. SimTube features a
+            computational pipeline that integrates multimodal data from the
+            video—such as visuals, audio, and metadata—with user personas
+            derived from a broad and diverse corpus of audience demographics,
+            generating varied and contextually relevant feedback. Furthermore,
+            the system's UI allows creators to explore and customize the
+            simulated comments. Through a comprehensive evaluation—comprising
+            quantitative analysis, crowd-sourced assessments, and qualitative
+            user studies—we show that SimTube's generated comments are not only
+            relevant, believable, and diverse but often more detailed and
+            informative than actual audience comments, highlighting its
+            potential to help creators refine their content before release.
+          </p>
+        </section>
+      </div>
+      <div class="w-full odd:bg-white even:bg-zinc-100">
+        <section
+          class="w-full flex flex-col items-center justify-start gap-y-3 max-w-screen-lg mx-auto px-6 py-10 lg:p-12"
+        >
+          <h2 class="text-center text-2xl font-semibold text-red-700">
+            System Pipeline
+          </h2>
+          <img
+            src="images/fig-1-system-pipeline.png"
+            alt="The system pipeline of SimTube"
+            class="md:w-5/6 w-full bg-zinc-200"
+          />
+          <p class="text-center text-sm text-zinc-700">
+            Fig. 1: The system pipeline of SimTube
+          </p>
+          <p class="text-justify">
+            Starting from how the audience would perceive a video, from clicking
+            the video that interests them, watching the video, acquiring the
+            content, to leaving their comments. The backend pipeline consists of
+            three primary components, as illustrated in Fig 1: (a) a Video
+            Understanding module, which captures the semantics of video content
+            through multimodal summarization; (b) a Persona Query module, which
+            retrieves relevant user personas for providing feedback on the
+            video; and (c) Comment Generation, which combines video
+            understanding and user persona information to generate and present
+            comments in the UI, allowing user interaction.
+          </p>
+        </section>
+      </div>
+      <div class="w-full odd:bg-white even:bg-zinc-100">
+        <section
+          class="w-full flex flex-col items-center justify-start gap-y-3 max-w-screen-lg mx-auto px-6 py-10 lg:p-12"
+        >
+          <h2 class="text-center text-2xl font-semibold text-red-700">
+            Types of Comments and Interaction Design
+          </h2>
+          <img src="images/fig-2.png" //todo alt="Types of comments and
+          interaction design" class="w-full md:w-5/6 bg-zinc-200" />
+          <p class="text-center text-sm text-zinc-700">
+            Fig. 2: Types of comments and interaction design
+          </p>
+          <p class="text-justify">
+            Our system supports four types of simulated comments using data from
+            earlier stages. The first two types are automatically generated by
+            the system, while the last two are user-initiated and customizable,
+            offering quick and interactive feedback.
+          </p>
+          <ul class="list-disc w-5/6">
+            <li>
+              <b
+                class="flex-col font-semibold bg-gradient-to-t from-[#3983f2]/35 from-20% via-[#3983f2]/35 via-39% to-transparent to-40%"
+                >Primary Comments</b
+              >: The initial comments that appear directly under the video.
+            </li>
+            <li>
+              <b
+                class="flex-col font-semibold bg-gradient-to-t from-[#ffa63e]/35 from-20% via-[#ffa63e]/35 via-39% to-transparent to-40%"
+                >Thread Comments</b
+              >: The generated responses to existing comments, structured
+              hierarchically as threaded replies beneath primary comments.
+            </li>
+            <li>
+              <b
+                class="flex-col font-semibold bg-gradient-to-t from-[#ee4445]/35 from-20% via-[#ee4445]/35 via-39% to-transparent to-40%"
+                >Response comments</b
+              >: The comments generated for responding to the user's reply,
+              contributing to a discussion thread under the replied comment.
+            </li>
+            <li>
+              <b
+                class="flex-col font-semibold bg-gradient-to-t from-[#32e630]/35 from-20% via-[#32e630]/35 via-39% to-transparent to-40%"
+                >Custom Persona Comments</b
+              >: The comments generated based on a user-defined persona,
+              tailored to user specifications.
+            </li>
+          </ul>
+          <p class="text-justify">
+            Users can interact with SimTube through
+            <b class="font-semibold">Thread Expansion</b> and
+            <b class="font-semibold">Persona Crafting</b> to create
+            <b class="font-semibold">Response Comments</b> and
+            <b class="font-semibold">Custom Persona Comments</b> respectively.
+          </p>
+          <h3 class="font-semibold text-lg text-center">Thread Expansion</h3>
+          <video controls class="md:w-5/6 w-full bg-zinc-200">
+            <source src="videos/thread_expansion.mp4" type="video/mp4" />
+            <p className="text-center text-zinc-600">
+              Your browser does not support the video format.
+            </p>
+          </video>
+          <p class="text-justify">
+            Users can extend existing discussions by replying to any simulated
+            comment. The dialogue is then deepened with the system generating a
+            follow-up reply with the original persona.
+          </p>
+          <h3 class="font-semibold text-lg text-center">
+            Custom Persona Comments
+          </h3>
+          <video controls class="md:w-5/6 w-full bg-zinc-200">
+            <source src="videos/persona_crafting.mp4" type="video/mp4" />
+            <p className="text-center text-zinc-600">
+              Your browser does not support the video format.
+            </p>
+          </video>
+          <p class="text-justify">
+            Users can receive feedback from specific audience's perspectives by
+            defining personas. A new comment will be generated according to the
+            user-defined persona and the video content.
+          </p>
+        </section>
+      </div>
+      <div class="w-full odd:bg-white even:bg-zinc-100">
+        <section
+          class="flex flex-col items-center justify-start gap-y-3 max-w-screen-lg mx-auto px-6 py-10 lg:p-12"
+        >
+          <h2 class="text-center text-2xl font-semibold text-red-700">
+            User Scenario
+          </h2>
+
+          <p class="text-justify w-full">
+            SimTube is designed to assist video creators with video rough-cut
+            versions.
+          </p>
+          <p>
+            Many participants (P4, P6, P8) emphasized creating rough-cut
+            versions or teasers during the editing phase, enabling collaboration
+            and feedback from sponsors or team members. As P4 explained, "A
+            rough-cut lets my team and sponsors give feedback before we proceed
+            further".
+          </p>
+          <p>
+            This suggests that SimTube could enhance this process by providing
+            automatic, diverse feedback on uploaded rough cuts. P6 added, "I can
+            seamlessly integrate SimTube into my workflow and collect more
+            feedback with minimal effort by uploading the rough-cut version or
+            any segments whenever I complete one."
+          </p>
+          <h3 class="font-semibold text-center text-lg">
+            (Case #1) Inspiration for New Video Topic
+          </h3>
+          <p class="text-justify">
+            SimTube can inspire new video topics. Participants (P1, P3, P6)
+            highlighted that AI-generated comments led them to explore new
+            ideas. For instance, P1, a travel vlogger, received recommendations
+            for famous tourist spots like Ikseon-dong Hanok Village after
+            uploading a Korean vlog, even though these places were not featured
+            in the video. "SimTube correctly listed all my itineraries based on
+            my narration, which helped me plan new vlogs," P1 noted,
+            demonstrating the system's ability to generate contextually relevant
+            insights.
+          </p>
+          <h3 class="font-semibold text-center text-lg">
+            (Case #2) Revision Current Video Editing
+          </h3>
+          <p class="text-justify">
+            SimTube could also influence ongoing video production. P6 uploaded a
+            half-finished street interview video on student lifestyles, and the
+            persona-based comments generated by SimTube extended the discussion
+            between the host and interviewee, introducing new topics such as
+            time management for university students. "It prompted me to explore
+            this theme further and enriched my video," P6 shared, illustrating
+            how SimTube's integration can guide and enhance content creation
+            throughout different stages of the workflow.
+          </p>
+        </section>
+      </div>
+      <div class="w-full odd:bg-white even:bg-zinc-100">
+        <section
+          class="flex flex-col items-center justify-start gap-y-3 max-w-screen-lg mx-auto px-6 py-10 lg:p-12"
+        >
+          <h2 class="text-center text-2xl font-semibold text-red-700">
+            Evaluation
+          </h2>
+          <img src="images/evaluation-1.png" //todo alt="Evaluation"
+          class="md:w-5/6 w-full bg-zinc-200" /> <img
+          src="images/evaluation-2.png" //todo alt="Evaluation" class="md:w-5/6
+          w-full bg-zinc-200" />
+          <p class="text-justify">
+            According to the crowd-sourced evaluation [Fig XXX] and the
+            evaluations using various automatic metrics [Fig XXX], the comments
+            generated by our system display superior word-level diversity, while
+            Real Comments showcase better semantic diversity. Although a few
+            real comments cover distinct common topics, clusters of real
+            comments may be highly similar, as reflected by the Self-BLEU score.
+            Concerning relevance to video content, generated comments outperform
+            Real Comments in word-level, semantic-level, and LLM evaluations. In
+            comparison to Real Comments, generated comments tend to be more
+            on-topic, authentic, and differentiated, offering a potent source of
+            inspiration. Despite their limited semantic diversity, the
+            scalability, rapid production, and pre-publication availability make
+            generated comments an advantageous preliminary source of inspiration
+            and feedback complementing Real Comments, particularly before the
+            formal publication of videos.
+          </p>
+        </section>
+      </div>
+      <div class="w-full odd:bg-white even:bg-zinc-100">
+        <section
+          class="flex flex-col items-center justify-start gap-y-3 max-w-screen-lg mx-auto px-6 py-10 lg:p-12"
+        >
+          <h2 class="text-center text-2xl font-semibold text-red-700">
+            Future Works
+          </h2>
+          <h3 class="font-semibold text-center text-lg">
+            Expanding SimTube's Pipeline
+          </h3>
+          <p class="text-justify">
+            While SimTube can generate comments for general video content, it
+            currently does not consider inherent variations in video like
+            <b class="font-semibold">genre, style, or cultural context</b>.
+            These areas present opportunities to expand SimTube's computational
+            pipeline to accommodate additional contextual information and enable
+            more customized comment generation. Future improvements could also
+            include handling longer video inputs and enhancing the overall
+            quality of language generation to provide more nuanced and useful
+            feedback.
+          </p>
+          <h3 class="font-semibold text-center text-lg">
+            Integration into Video Production Workflows
+          </h3>
+          <p class="text-justify">
+            While we have assessed the quality of our generated comments, the
+            system has yet to be deployed in real-world settings. Future
+            research should explore integrating SimTube into video editing tools
+            or production environments to evaluate its overall impact.
+            Qualitative studies could further investigate how the system
+            complements professional workflows, providing deeper insights into
+            its practical utility. Relevantly, our system generates comments
+            only based on a single video version. However, creators often
+            produce multiple iterations to determine the best result. By
+            analyzing a series of video edits, the system could generate
+            comparative feedback highlighting differences between the current
+            and previous versions, enabling users to refine their work more
+            effectively by leveraging the strengths of each iteration. However,
+            expanding to handle multiple versions introduces challenges related
+            to system scalability and processing efficiency that warrant future
+            explorations.
+          </p>
+          <h3 class="font-semibold text-center text-lg">
+            Implications of AI-Generated Comments
+          </h3>
+          <p class="text-justify w-full">
+            We recognize the implications of using AI for human-like comment
+            generation, including
+            <b class="font-semibold">bias, misuse, and harmful output</b>.
+          </p>
+          <p class="text-justify">
+            <b class="font-semibold">Biases</b> could be inherent in system
+            components such as image captioning models and LLMs. While these
+            models have been aligned to reduce negative impacts, entirely
+            eliminating bias remains challenging.
+          </p>
+          <p class="text-justify">
+            <b class="font-semibold">The overreliance</b> on SimTube's feedback
+            could lead creators to conform too closely to simulated audience
+            preferences, potentially stifling creativity and diversity in
+            content creation.
+          </p>
+          <p class="text-justify">
+            <b class="font-semibold">The AI-generated harmful content</b>
+            negatively impacts users. We are committed to managing this issue
+            responsibly to ensure that tools like SimTube support and enhance
+            creators' work while minimizing risks.
+          </p>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
