@@ -476,5 +476,39 @@
         </section>
       </div>
     </div>
+    <script>
+      // for autoplay videos
+      document.addEventListener("DOMContentLoaded", function () {
+        const videos = document.querySelectorAll("video");
+
+        const options = {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0.5,
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Try to play the video
+              const playPromise = entry.target.play();
+
+              // Handle the play promise to avoid potential errors
+              if (playPromise !== undefined) {
+                playPromise.catch((error) => {
+                  console.log("Autoplay prevented:", error);
+                });
+              }
+            } else {
+              entry.target.pause();
+            }
+          });
+        }, options);
+
+        videos.forEach((video) => {
+          observer.observe(video);
+        });
+      });
+    </script>
   </body>
 </html>
